@@ -10,6 +10,5 @@ class DataInfo {
 
     var up :String = ""
 
-
     var down :String = ""
 }

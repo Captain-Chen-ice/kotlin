@@ -1,4 +1,9 @@
-package com.example.kotlin.data
+package com.example.kotlin.logic
+
+import android.os.Handler
+import android.os.Looper
+import com.example.kotlin.data.DataInfo
+import com.example.kotlin.data.DataSearch
 
 class ViewDataManager {
     var startIndex = 0 //分页起始位置
@@ -14,5 +19,32 @@ class ViewDataManager {
      */
     fun setDataListener(pListener: ((dataInfos: ArrayList<DataInfo>, footType: String) -> Unit)) {
         this.listener = pListener
+    }
+
+    /**
+     * 查询数据
+     */
+    fun searchPagesData() {
+        //创建数据查询对象（模拟数据查询）
+        var dataSearch = DataSearch()
+        //设置数据回调监听
+        dataSearch.setDataRequestListener { errorCode, datas ->
+            //切回主线程
+            Handler(Looper.getMainLooper()).post {
+                if (errorCode == 0) {
+                    //累计当前位置
+                    startIndex += datas.size
+                    //判断后面是否还有数据
+                    //var footType = if (viewNum == datas.size) TYPE_PAGE_MORE else TYPE_PAGE_LAST
+                    //回调结果
+                    //listener.invoke(datas, footType)
+                } else {
+                    //回调错误结果
+                    //listener.invoke(datas, TYPE_PAGE_ERROR)
+                }
+            }
+        }
+        //查询数据
+        dataSearch.search(startIndex, viewNum)
     }
 }

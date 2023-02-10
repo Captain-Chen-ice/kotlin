@@ -22,7 +22,7 @@ class ViewLayoutManager(
  *     learn:https://www.jianshu.com/p/8e578d8ebe5f
  *     @param viewStyle:Int 用作更换布局使用（设定常量标识判断）
  **/
-    fun getLoyoutManager(viewStyle: Int):LinearLayoutManager{
+    fun getLayoutManager():LinearLayoutManager{
         return llManager
     }
 

@@ -11,7 +11,7 @@ import com.example.kotlin.data.DataInfo
 
 class Adapter (
     vcontext:Context,
-    vDataInfos:Array<DataInfo>
+    vDataInfos:ArrayList<DataInfo>
 ):RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     var context = vcontext//上下文
     var datas = vDataInfos//data数据类集合
